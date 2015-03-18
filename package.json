@@ -23,6 +23,7 @@
     "gulp-util": "*",
     "mocha": "*",
     "should": "*",
+    "titleize": "*",
     "vinyl-buffer": "*",
     "vinyl-source-stream": "*"
   },
@@ -38,7 +39,7 @@
   "main": "./index.js",
   "repository": "Kikobeats/acho",
   "scripts": {
-    "test": "sh test/test.sh",
-    "build": "node ./node_modules/.bin/gulp --require coffee-script"
+    "build": "node ./node_modules/.bin/gulp --require coffee-script",
+    "test": "sh test/test.sh"
   }
 }

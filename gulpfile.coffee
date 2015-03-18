@@ -3,6 +3,7 @@
 # -- Dependencies --------------------------------------------------------------
 
 gulp       = require 'gulp'
+titleize   = require 'titleize'
 coffeeify  = require 'coffeeify'
 gutil      = require 'gulp-util'
 browserify = require 'browserify'
@@ -19,7 +20,7 @@ src =
 
 module =
   filename : "#{pkg.name}.js"
-  shortcut  : "#{pkg.name}"
+  shortcut : titleize "#{pkg.name}"
   dist     : 'dist'
 
 banner = [
@@ -30,16 +31,14 @@ banner = [
            " * @license <%= pkg.license %>"
            " */"].join("\n")
 
-properName = module.shortcut.charAt(0).toUpperCase() + module.shortcut.substr(1)           
-
 # -- Tasks ---------------------------------------------------------------------
 
 gulp.task 'browserify', ->
   browserify
       extensions: ['.coffee', '.js']
-      standalone: properName
+      standalone: module.shortcut
     .transform coffeeify
-    .require(src.main, { expose: properName })
+    .require(src.main, { expose: module.shortcut })
     .ignore('coffee-script')
     .bundle()
   .pipe source module.filename
